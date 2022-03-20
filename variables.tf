@@ -23,3 +23,15 @@ variable "ami_image_owner" {
 variable "instance_count" {
   default = 3
 }
+
+variable "instance_name" {
+  default = ""
+}
+
+variable "master" {
+  default = "capstone-master"
+}
+
+variable "worker" {
+  default = "capstone-worker"
+}

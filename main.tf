@@ -51,4 +51,7 @@ resource "aws_instance" "capstone_server" {
   vpc_security_group_ids = [aws_security_group.capstone_sg.id]
   subnet_id              = tolist(data.aws_subnet_ids.default_subnets.ids)[2]
   count                  = var.instance_count
+  tags = {
+    Name = "${count.index == 0 ? var.master : join("-",[var.worker,count.index])}"
+  }
 }
