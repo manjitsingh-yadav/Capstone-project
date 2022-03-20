@@ -3,7 +3,7 @@ variable "aws_key_pair" {
 }
 
 variable "aws_key_name" {
-  default = "default-EC2-3"
+  default = "us-east-kp"
 }
 
 variable "ec2_instance_type" {
