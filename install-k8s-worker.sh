@@ -29,6 +29,6 @@ echo "deb http://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee /etc/apt/
 
 curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
 
-sudo apt-get update ; clear
+sudo apt-get update
 
 sudo apt-get install -y kubelet kubeadm
