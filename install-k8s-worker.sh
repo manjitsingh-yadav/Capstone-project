@@ -15,7 +15,7 @@ sudo apt-get update
 
 sudo apt-get install -y docker-ce
 
-sudo echo -e "{\n\t\"exec-opts\": [\"native.cgroupdriver=systemd\"]\n}" > sudo /etc/docker/daemon.json
+echo -e "{\n\t\"exec-opts\": [\"native.cgroupdriver=systemd\"]\n}" | sudo tee /etc/docker/daemon.json
 
 sudo service docker restart
 

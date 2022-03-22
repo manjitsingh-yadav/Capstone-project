@@ -38,7 +38,7 @@ resource "aws_security_group" "capstone_sg" {
     protocol    = -1
     cidr_blocks = [aws_default_vpc.default.cidr_block]
   }
-  
+
   egress {
     from_port   = 0
     to_port     = 0
@@ -54,11 +54,12 @@ resource "aws_security_group" "capstone_sg" {
 resource "aws_instance" "capstone_server" {
   ami                    = data.aws_ami.ubuntu.id
   key_name               = var.aws_key_name
-  instance_type          = "${count.index == 0 ? "t2.medium" : var.ec2_instance_type}"
+  instance_type          = count.index == 0 ? "t2.medium" : var.ec2_instance_type
   vpc_security_group_ids = [aws_security_group.capstone_sg.id]
   subnet_id              = tolist(data.aws_subnet_ids.default_subnets.ids)[2]
   count                  = var.instance_count
+  user_data              = count.index == 0 ? file("install-k8s-master.sh") : file("install-k8s-worker.sh")
   tags = {
-    Name = "${count.index == 0 ? var.master : join("-",[var.worker,count.index])}"
+    Name = "${count.index == 0 ? var.master : join("-", [var.worker, count.index])}"
   }
 }
