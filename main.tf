@@ -32,6 +32,13 @@ resource "aws_security_group" "capstone_sg" {
     }
   }
 
+  ingress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = -1
+    cidr_blocks = [aws_default_vpc.default.cidr_block]
+  }
+  
   egress {
     from_port   = 0
     to_port     = 0
@@ -47,7 +54,7 @@ resource "aws_security_group" "capstone_sg" {
 resource "aws_instance" "capstone_server" {
   ami                    = data.aws_ami.ubuntu.id
   key_name               = var.aws_key_name
-  instance_type          = var.ec2_instance_type
+  instance_type          = "${count.index == 0 ? "t2.medium" : var.ec2_instance_type}"
   vpc_security_group_ids = [aws_security_group.capstone_sg.id]
   subnet_id              = tolist(data.aws_subnet_ids.default_subnets.ids)[2]
   count                  = var.instance_count
