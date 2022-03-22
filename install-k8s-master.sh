@@ -29,15 +29,13 @@ echo "deb http://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee /etc/apt/
 
 curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
 
-sudo apt-get update ; clear
+sudo apt-get update
 
 sudo apt-get install -y kubelet kubeadm kubectl
 
 sudo kubeadm init
 
-sudo mkdir -p $HOME/.kube
-
-sudo touch $HOME/.kube/config
+mkdir -p $HOME/.kube
 
 sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
 
