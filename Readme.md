@@ -19,3 +19,9 @@ apt-get update
 apt-get install -y apache2-utils
 
 ab -n 100000 -c 500 http://<service-ip-cluster-ip>:port/
+
+# 6. Cronjob
+
+crontab -e
+
+0 */2 *   *   *    /bin/bash etcd-backup.sh
