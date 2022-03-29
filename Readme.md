@@ -29,3 +29,7 @@ crontab -e
 # 7. Kubernetes secret to access images from private account
 
 kubectl create secret docker-registry regcred --docker-server=https://index.docker.io/v1/ --docker-username=manjitsinghyadav --docker-password=XXXXXXXX --docker-email=XXXXXXXXX@gmail.com
+  
+# 8. Testing HPA
+while true; do wget -q -O- http://10.101.90.75:3306; done
+ 
