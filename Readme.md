@@ -25,3 +25,7 @@ ab -n 100000 -c 500 http://<service-ip-cluster-ip>:port/
 crontab -e
 
 0 */2 *   *   *    /bin/bash etcd-backup.sh
+
+# 7. Kubernetes secret to access images from private account
+
+kubectl create secret docker-registry regcred --docker-server=https://index.docker.io/v1/ --docker-username=manjitsinghyadav --docker-password=XXXXXXXX --docker-email=XXXXXXXXX@gmail.com
